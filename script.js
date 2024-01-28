@@ -17,21 +17,21 @@ var timeDisplay =
 
 displayCurrentDayEl.text(timeDisplay);
 // Variable for current time
-var currentTime = dayjs().format("h A");
+var currentTime = dayjs().format("hA");
 console.log(currentTime);
-var currentIndex = 0;
+// var currentIndex = 0;
 
 // Hours for the day
 var hourOfDay = [
-  "9 AM",
-  "10 AM",
-  "11 AM",
-  "12 PM",
-  "1 PM",
-  "2 PM",
-  "3 PM",
-  "4 PM",
-  "5 PM",
+  "9AM",
+  "10AM",
+  "11AM",
+  "12PM",
+  "1PM",
+  "2PM",
+  "3PM",
+  "4PM",
+  "5PM",
 ];
 
 // $(".hourDay").append(hourOfDay.currentIndex);
@@ -62,34 +62,39 @@ function createRow() {
     hourPosted.eq(index).text(value);
   });
 
-  if (currentTime === hourDayo]) {
-    console.log("present time color match");
+  // Using console.log to check if times show in each time-block div
+  var blockDivs = $(".hourDay");
+  for (var i = 0; i < blockDivs.length; i++) {
+    console.log(blockDivs[i].innerText);
   }
 
-  // if (currentTime === hourOfDay.currentIndexindex[1]) {
-  //   console.log("present time color match");
-  //   $("#calendar_day").classList.add(present);
-  // }
+  // Testing to see if can add present class to text area class - yes below
+  // $("textarea").addClass("present");
+
+  // Checking time to display past, present, or future
+  if ("#id" == currentTime) {
+    $("textarea").addClass("present");
+  }
 }
 
 // Calling the createRow function
 createRow();
 
 // Save to local storage function
-function saveData() {
-  console.log("saving data");
+// function saveData() {
+//   saveData.preventDefault();
 
-  var typedEvent = $("textarea");
-  console.log(typedEvent);
-
-  // localStorage.setItem("userEvent"), JSON.stringify(typedEvent);
-  // var storedEvent = JSON.parse(localStorage.getItem("userEvent"));
-
-  // console.log(storedEvent);
-}
+//   // var typedEvent = $("textarea");
+//   // console.log(typedEvent);
+// }
 
 // Save button click to save data to local storage
-$(".btn").click(saveData);
+$(".btn").click(function (event) {
+  event.preventDefault();
+  console.log("saving data");
+  var userInput = $("<textarea").value;
+  localStorage.setItem("description", JSON.stringify(userInput));
+});
 
 $(function () {
   // TODO: Add a listener for click events on the save button. This code should
