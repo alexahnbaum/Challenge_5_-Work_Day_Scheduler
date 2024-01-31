@@ -17,7 +17,6 @@ $(function () {
   var kEndingTime = 17;
 
   // Create time-block rows - one element at a time
-
   // Create a forloop to use constant variable values of kStartingTime or kEndingTime in the hour id's
   for (let i = kStartingTime; i < kEndingTime; i++) {
     var timeTravel;
@@ -47,8 +46,6 @@ $(function () {
       hourAMPM = i - 12 + "PM";
     }
 
-    console.log(hourAMPM);
-
     // Creates and appends time display, text field, button, and button image
     var timeShown = $("<div>")
       .attr("class", "col-2 col-md-1 hour text-center py-3")
@@ -73,18 +70,21 @@ $(function () {
   $("button").append(buttonImage);
 
   // Save button click to save data to local storage
+  $("#calendar_day").on("click", "button", function (event) {
+    console.log("button clicked");
+    // When clicked this variable gets text of siblings of button element
+    var hourClicked = $(event.target);
+    // Gets text of all siblings - ask tutor what to use instead of .each when wanting to target one specific sibling
+    // Gets user input
+    hourClicked.siblings().each(function () {
+      var hourIdText = $(this).text();
+      var userInput = $(this).siblings("textarea");
+      var userInputText = userInput.val();
+      console.log(hourIdText);
+      console.log(userInputText);
 
-  $("button").click(function () {
-    console.log("saving data");
-    var hourOfDay = $("button").parent(".btn");
-    console.log(hourOfDay);
-    // localStorage.setItem(hourOfDay, text placeholder);
+      // Send two variables to local storage - ask tutor why first user input is paired with "undefined"
+      localStorage.setItem(hourIdText, userInputText);
+    });
   });
-
-  //
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  //
-  // TODO: Add code to display the current date in the header of the page.
 });
