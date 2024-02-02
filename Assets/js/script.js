@@ -18,7 +18,7 @@ $(function () {
 
   // Create time-block rows - one element at a time
   // Create a forloop to use constant variable values of kStartingTime or kEndingTime in the hour id's
-  for (let i = kStartingTime; i < kEndingTime; i++) {
+  for (let i = kStartingTime; i < kEndingTime + 1; i++) {
     var timeTravel;
     var currentHour = currentTime.hour();
     if (i === currentHour) {
